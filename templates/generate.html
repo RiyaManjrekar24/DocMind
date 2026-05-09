@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Generate — DocMind{% endblock %}
+
+{% block content %}
+<div class="page-generate">
+
+  <div class="page-header">
+    <h1>Generate HTML</h1>
+    <p>Upload a file or paste text — your local AI will convert it into a beautiful HTML document.</p>
+  </div>
+
+  <!-- Input Panel -->
+  <div class="panel">
+    <div class="panel-header">
+      <span>Input</span>
+      <div class="tab-row">
+        <button class="tab active" id="tab-text-btn" onclick="switchTab('text')">✏ Text</button>
+        <button class="tab" id="tab-file-btn" onclick="switchTab('file')">📎 File</button>
+      </div>
+    </div>
+
+    <!-- Text tab -->
+    <div id="tab-text" class="tab-content active">
+      <textarea id="text-input" placeholder="Paste your content here — articles, notes, research, documentation, anything..."></textarea>
+    </div>
+
+    <!-- File tab -->
+    <div id="tab-file" class="tab-content">
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="file-input" accept=".txt,.pdf,.doc,.docx,.md,.html,.csv,.json"/>
+        <div class="upload-inner">
+          <div class="upload-icon">⬆</div>
+          <h3>Drop your file here</h3>
+          <p>or click to browse</p>
+          <div class="file-tags">
+            <span class="ftag">PDF</span><span class="ftag">DOCX</span><span class="ftag">TXT</span>
+            <span class="ftag">MD</span><span class="ftag">CSV</span><span class="ftag">JSON</span>
+          </div>
+        </div>
+      </div>
+      <div id="file-info" class="file-info" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- Options Panel -->
+  <div class="options-row">
+    <div class="option-group">
+      <label>Model</label>
+      <select id="model-select">
+        <option value="">Loading models...</option>
+      </select>
+    </div>
+    <div class="option-group">
+      <label>Output Style</label>
+      <select id="style-select">
+        <option value="explainer">📖 Explainer</option>
+        <option value="summary">📋 Summary</option>
+        <option value="study">🎓 Study Guide</option>
+        <option value="presentation">🎯 Presentation</option>
+        <option value="technical">⚙ Technical Docs</option>
+      </select>
+    </div>
+    <button class="btn-primary" id="gen-btn" onclick="startGenerate()">
+      <span id="gen-btn-text">✦ Generate</span>
+    </button>
+  </div>
+
+  <!-- Progress -->
+  <div id="progress-wrap" style="display:none">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label">Initializing...</div>
+  </div>
+
+  <!-- Error -->
+  <div class="error-banner" id="error-banner" style="display:none"></div>
+
+  <!-- Output Panel -->
+  <div class="panel output-panel" id="output-panel" style="display:none">
+    <div class="panel-header">
+      <span>Output</span>
+      <div class="output-actions">
+        <button class="btn-sm" onclick="switchOutput('preview')">Preview</button>
+        <button class="btn-sm" onclick="switchOutput('source')">Source</button>
+        <button class="btn-sm accent" onclick="copyHTML()">⎘ Copy</button>
+        <button class="btn-sm accent" onclick="downloadHTML()">↓ Download</button>
+        <button class="btn-sm accent" onclick="openTab()">⤢ Open</button>
+      </div>
+    </div>
+    <div class="output-body">
+      <iframe id="preview-frame" sandbox="allow-scripts" style="display:block"></iframe>
+      <pre id="source-view" style="display:none"></pre>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/generate.js"></script>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Settings — DocMind{% endblock %}
+
+{% block content %}
+<div class="page-settings">
+
+  <div class="page-header">
+    <h1>Settings</h1>
+    <p>Configure your DocMind instance.</p>
+  </div>
+
+  <div class="settings-grid">
+
+    <div class="settings-card">
+      <h3>Ollama Connection</h3>
+      <div class="setting-row">
+        <label>Ollama URL</label>
+        <input type="text" id="ollama-url-input" placeholder="http://localhost:11434"/>
+      </div>
+      <div class="setting-row">
+        <label>Status</label>
+        <div class="status-check">
+          <div class="status-dot" id="settings-dot"></div>
+          <span id="settings-status">Checking...</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="testConnection()" style="margin-top:8px">Test Connection</button>
+    </div>
+
+    <div class="settings-card">
+      <h3>Available Models</h3>
+      <div id="models-list" class="models-list">
+        <p class="muted">Loading...</p>
+      </div>
+      <div class="install-hint">
+        <p class="muted">To install a new model:</p>
+        <code>ollama pull llama3.2</code>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <h3>Default Preferences</h3>
+      <div class="setting-row">
+        <label>Default Model</label>
+        <select id="default-model">
+          <option value="">Auto (first available)</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <label>Default Style</label>
+        <select id="default-style">
+          <option value="explainer">📖 Explainer</option>
+          <option value="summary">📋 Summary</option>
+          <option value="study">🎓 Study Guide</option>
+          <option value="presentation">🎯 Presentation</option>
+          <option value="technical">⚙ Technical Docs</option>
+        </select>
+      </div>
+      <button class="btn-primary" onclick="savePrefs()">Save Preferences</button>
+      <div class="save-msg" id="save-msg"></div>
+    </div>
+
+    <div class="settings-card">
+      <h3>About</h3>
+      <p class="muted" style="line-height:1.8">
+        DocMind is a local-first AI document explainer.<br/>
+        All processing happens on your machine via Ollama.<br/>
+        No data is ever sent to external servers.
+      </p>
+      <div class="about-badges">
+        <span class="badge">Flask Backend</span>
+        <span class="badge">Ollama LLM</span>
+        <span class="badge">100% Local</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/settings.js"></script>
+{% endblock %}

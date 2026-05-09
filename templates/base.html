@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}DocMind{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/main.css"/>
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <!-- Sidebar Nav -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">Doc<span>Mind</span></div>
+
+    <ul class="nav-links">
+      <li>
+        <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">
+          <span class="nav-icon">⌂</span>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="/generate" class="nav-link {% if request.path == '/generate' %}active{% endif %}">
+          <span class="nav-icon">✦</span>
+          <span>Generate</span>
+        </a>
+      </li>
+      <li>
+        <a href="/history" class="nav-link {% if request.path == '/history' %}active{% endif %}">
+          <span class="nav-icon">◷</span>
+          <span>History</span>
+        </a>
+      </li>
+      <li>
+        <a href="/settings" class="nav-link {% if request.path == '/settings' %}active{% endif %}">
+          <span class="nav-icon">⚙</span>
+          <span>Settings</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="ollama-status">
+        <div class="status-dot" id="ollama-dot"></div>
+        <span id="ollama-label">Checking...</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile top bar -->
+  <header class="mobile-header">
+    <div class="sidebar-logo">Doc<span>Mind</span></div>
+    <button class="menu-btn" onclick="toggleMobileNav()">☰</button>
+  </header>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav-overlay" id="mobile-overlay" onclick="toggleMobileNav()"></div>
+  <nav class="mobile-nav" id="mobile-nav">
+    <ul class="nav-links">
+      <li><a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}"><span class="nav-icon">⌂</span> Home</a></li>
+      <li><a href="/generate" class="nav-link {% if request.path == '/generate' %}active{% endif %}"><span class="nav-icon">✦</span> Generate</a></li>
+      <li><a href="/history" class="nav-link {% if request.path == '/history' %}active{% endif %}"><span class="nav-icon">◷</span> History</a></li>
+      <li><a href="/settings" class="nav-link {% if request.path == '/settings' %}active{% endif %}"><span class="nav-icon">⚙</span> Settings</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="/static/js/main.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

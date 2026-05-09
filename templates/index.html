@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}DocMind — AI Document Explainer{% endblock %}
+
+{% block content %}
+<div class="page-home">
+
+  <div class="hero">
+    <div class="hero-badge">Powered by Ollama · Runs Locally</div>
+    <h1 class="hero-title">
+      Turn any document<br/>into <em>beautiful HTML</em>
+    </h1>
+    <p class="hero-sub">
+      Paste text, upload a PDF or Word doc — DocMind uses your local AI model
+      to generate clean, readable, shareable HTML explanations.
+    </p>
+    <div class="hero-actions">
+      <a href="/generate" class="btn-primary">✦ Start Generating</a>
+      <a href="/settings" class="btn-ghost">Configure →</a>
+    </div>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Multiple Formats</h3>
+      <p>Upload PDF, DOCX, TXT, Markdown, CSV, JSON or just paste raw text.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h3>Local AI</h3>
+      <p>Everything runs on your machine via Ollama. No data leaves your device.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h3>5 Output Styles</h3>
+      <p>Explainer, Summary, Study Guide, Presentation, or Technical Docs.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Streaming Output</h3>
+      <p>Watch your HTML document generate in real-time, token by token.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💾</div>
+      <h3>Download & Share</h3>
+      <p>Download the generated HTML or open it directly in a new tab.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📚</div>
+      <h3>History</h3>
+      <p>All your generated documents are saved locally in your browser.</p>
+    </div>
+  </div>
+
+  <div class="quick-start">
+    <h2>Quick Start</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h4>Run Ollama</h4>
+          <code>ollama serve</code>
+        </div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h4>Pull a model</h4>
+          <code>ollama pull llama3.2</code>
+        </div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h4>Generate!</h4>
+          <a href="/generate" style="color:var(--accent)">Go to Generate →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
